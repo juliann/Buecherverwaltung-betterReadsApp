@@ -35,20 +35,12 @@ public class UserBooks {
   @CassandraType(type = Name.INT)
   private int rating;
 
-  public String getUserId() {
-    return userId;
+  public UserBooksPrimaryKey getUserBooksPrimaryKey() {
+    return userBooksPrimaryKey;
   }
 
-  public void setUserId(String userId) {
-    this.userId = userId;
-  }
-
-  public String getBookId() {
-    return bookId;
-  }
-
-  public void setBookId(String bookId) {
-    this.bookId = bookId;
+  public void setUserBooksPrimaryKey(UserBooksPrimaryKey userBooksPrimaryKey) {
+    this.userBooksPrimaryKey = userBooksPrimaryKey;
   }
 
   public String getReadingStatus() {
