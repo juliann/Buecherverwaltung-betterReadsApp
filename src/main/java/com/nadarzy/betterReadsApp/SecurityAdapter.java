@@ -7,31 +7,28 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.web.authentication.HttpStatusEntryPoint;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
-/**
- * @author Julian Nadarzy on 21/10/2021
- */
+/** @author Julian Nadarzy on 21/10/2021 */
 @Configuration
 public class SecurityAdapter extends WebSecurityConfigurerAdapter {
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        // @formatter:off
-        http
-                .authorizeRequests(a -> a
-                        .antMatchers("/", "/error","/books/*", "/search**").permitAll()
-                        .anyRequest().authenticated()
-                )
-                .exceptionHandling(e -> e
-                        .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED))
-                )
-                .csrf(c -> c
-                        .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
-                )
-                .logout(l -> l
-                        .logoutSuccessUrl("/").permitAll()
-                )
-                .oauth2Login();
-        // @formatter:on
-    }
+  @Override
+  protected void configure(HttpSecurity http) throws Exception {
+    // @formatter:off
+    http
+            .authorizeRequests(a -> a
+                    .anyRequest().permitAll()
+            )
+//            a ->
+//                a.antMatchers("/", "/error", "/books/*", "/search**", "/addUserBook**")
+//                    .permitAll()
+//                    .anyRequest()
+//                    .authenticated())
 
+        .exceptionHandling(
+            e -> e.authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED)))
+        .csrf(c -> c.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()))
+        .logout(l -> l.logoutSuccessUrl("/").permitAll())
+        .oauth2Login();
+    // @formatter:on
+  }
 }
