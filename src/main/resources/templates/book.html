@@ -50,16 +50,18 @@
                     <div class="mb-3">
                         <label for="startDate" class="form-label">Start Date</label>
                         <input type="date" class="form-control" id="startDate" name="startDate"
+                               th:value="${userBooks.startedDate}"
                         >
                     </div>
                     <div class="mb-3">
                         <label for="completedDate" class="form-label">Completed Date</label>
-                        <input type="date" class="form-control" id="completedDate" name="completedDate">
+                        <input type="date" class="form-control" id="completedDate" name="completedDate"
+                               th:value="${userBooks.completedDate}">
                     </div>
                     <div class="mb-3">
-                        <label for="status" class="form-label">Status</label>
-                        <select id="status" class=" form-select" aria-label="Reading status"
-                                name="status">
+                        <label for="readingStatus" class="form-label">Status</label>
+                        <select id="readingStatus" class="form-select" aria-label="Reading status"
+                                name="readingStatus" th:field="${userBooks.readingStatus}">
                             <option selected value="0">Status</option>
                             <option value="reading">currently reading</option>
                             <option value="finished">finished</option>
@@ -68,7 +70,8 @@
                     </div>
                     <div class="mb-3">
                         <label for="rating" class="form-label">Status</label>
-                        <select id="rating" name="rating" class=" form-select" aria-label="Rating">
+                        <select id="rating" name="rating" class="form-select" aria-label="Rating"
+                                th:field="${userBooks.rating}">
                             <option selected value="0">Select Rating</option>
                             <option value="1">&#9733</option>
                             <option value="2">&#9733&#9733</option>
@@ -80,7 +83,8 @@
                     </div>
                     <div class="mb-3">
                         <label for="review" class="form-label">Book Review </label>
-                        <textarea class="form-control" id="review" name="review" rows="3"></textarea>
+                        <textarea class="form-control" id="review" name="review" rows="3"
+                                  th:text="${userBooks.bookReview}"></textarea>
                     </div>
                     <button type="submit" class="btn-primary btn">Submit</button>
                 </form>

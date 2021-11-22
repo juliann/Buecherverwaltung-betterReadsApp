@@ -1,5 +1,8 @@
 package com.nadarzy.betterReadsApp.book;
 
+import com.nadarzy.betterReadsApp.userbooks.UserBooks;
+import com.nadarzy.betterReadsApp.userbooks.UserBooksPrimaryKey;
+import com.nadarzy.betterReadsApp.userbooks.UserBooksRepository;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
@@ -15,9 +18,11 @@ public class BookController {
   private final String COVER_IMAGE_ROOT = "http://covers.openlibrary.org/b/id/";
 
   private final BookRepository bookRepository;
+  private final UserBooksRepository userBooksRepository;
 
-  public BookController(BookRepository bookRepository) {
+  public BookController(BookRepository bookRepository, UserBooksRepository userBooksRepository) {
     this.bookRepository = bookRepository;
+    this.userBooksRepository = userBooksRepository;
   }
 
   @GetMapping("/books/{bookId}")
@@ -34,7 +39,17 @@ public class BookController {
       }
       model.addAttribute("coverImage", coverImage);
       if (principal != null && principal.getAttribute("login") != null) {
-        model.addAttribute("loginId", principal.getAttribute("login"));
+        String login = principal.getAttribute("login");
+        model.addAttribute("loginId", login);
+        UserBooksPrimaryKey key = new UserBooksPrimaryKey();
+        key.setBookId(bookId);
+        key.setUserId(login);
+        Optional<UserBooks> userBooksOptional = userBooksRepository.findById(key);
+        if (userBooksOptional.isPresent()) {
+          model.addAttribute("userBooks", userBooksOptional.get());
+        } else {
+          model.addAttribute("userBooks", new UserBooks());
+        }
       }
       return "book";
 
