@@ -15,7 +15,7 @@ import java.util.Optional;
 /** @author Julian Nadarzy on 22/10/2021 */
 @Controller
 public class BookController {
-  private final String COVER_IMAGE_ROOT = "http://covers.openlibrary.org/b/id/";
+  public static final String COVER_IMAGE_ROOT = "http://covers.openlibrary.org/b/id/";
 
   private final BookRepository bookRepository;
   private final UserBooksRepository userBooksRepository;
