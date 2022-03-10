@@ -2,7 +2,7 @@
 
 Dieses Projekt dient dazu den Umgang mit einer Cassandra Datenbank mit riesigen Datenmengen (in diesem Beispiel: alle Bücher die über https://openlibrary.org/ verfügbar sind, ~20 Millionen) zu erlenen. Die Inspiration dieses Projekts kommt von https://www.goodreads.com/.
 
-Ein Nutzer soll sich auf unserer Seite, wenn er nicht eingeloggt ist Bücher aus dem Katalog von openlibrary suchen können und Infos zu Autor, Release Datum, Bild dargestellt bekommen. Falls der Nutzer eingeloggt ist, kann er seinen Lesestatus, Start und Enddatum des Lesens sowie eine Bewertung und ein Rating für das Buch abgeben und abspeichern.
+Ein Nutzer soll wenn er nicht eingeloggt ist Bücher aus dem Katalog von openlibrary suchen können und Infos zu Autor, Release Datum, Bild von unserer Cassandra Datenbank dargestellt bekommen. Falls der Nutzer eingeloggt ist, kann er seinen Lesestatus, Start und Enddatum des Lesens sowie eine Bewertung und ein Rating für das Buch abgeben und abspeichern.
 
 Technologien:
 -	Webseite mit Thymeleaf und Bootstrap
